@@ -1,7 +1,6 @@
 # LisandroPonceDJ
 Servicio de DJ Profesional
 
-https://agustinponcedev.github.io/LisandroPonceDJ/
 ## Landing (desplegada)
 
 Contiene `index.html` = landing de DJ Lisandro (sonido, iluminación y música para eventos).
