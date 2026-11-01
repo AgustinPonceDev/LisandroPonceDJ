@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJ Lisandro — Sonido, Iluminación y Música para tu Evento</title>
+<meta name="description" content="Servicio de DJ, sonido profesional e iluminación para fiestas, casamientos y eventos. Contactá a Lisandro directo por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b14;
+    --bg-soft:#14121f;
+    --bg-card:#181527;
+    --violet:#8b5cf6;
+    --magenta:#ff2d78;
+    --amber:#ffb454;
+    --whatsapp:#25d366;
+    --ink:#f4f1fb;
+    --muted:#a9a3c4;
+    --line:rgba(244,241,251,0.1);
+    --display:'Anton', sans-serif;
+    --body:'Manrope', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  ul{list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:7px;height:7px;border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 10px var(--amber);
+  }
+  h1,h2,h3{font-family:var(--display);text-transform:uppercase;letter-spacing:0.01em;line-height:1.05;}
+  .section-title{font-size:clamp(2rem,5vw,3.2rem);margin:14px 0 18px;}
+  .section-lede{color:var(--muted);max-width:520px;font-size:1.02rem;}
+  section{padding:96px 0;position:relative;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(11,11,20,0.7);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    font-family:var(--display);
+    font-size:1.15rem;letter-spacing:0.04em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--magenta);
+    box-shadow:0 0 12px var(--magenta);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.6;}}
+  .nav-links{display:flex;gap:32px;align-items:center;}
+  .nav-links a{
+    font-size:0.86rem;text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--muted);transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--whatsapp);color:#06210f;
+    padding:10px 18px;border-radius:999px;
+    font-weight:700;font-size:0.84rem;
+    display:flex;align-items:center;gap:8px;
+    box-shadow:0 0 0 0 rgba(37,211,102,.6);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(37,211,102,.4);}
+  .burger{display:none;flex-direction:column;gap:5px;width:26px;}
+  .burger span{height:2px;background:var(--ink);border-radius:2px;transition:.25s;}
+  .mobile-panel{
+    display:none;flex-direction:column;gap:18px;
+    padding:20px 28px 28px;border-top:1px solid var(--line);
+    background:var(--bg-soft);
+  }
+  .mobile-panel a{font-size:1rem;color:var(--ink);text-transform:uppercase;letter-spacing:.06em;}
+  body.menu-open .mobile-panel{display:flex;}
+  body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  body.menu-open .burger span:nth-child(2){opacity:0;}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  @media(max-width:780px){
+    .nav-links{display:none;}
+    .nav-cta.desktop-only{display:none;}
+    .burger{display:flex;}
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding-top:120px;padding-bottom:60px;
+    position:relative;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(139,92,246,0.28), transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(255,45,120,0.22), transparent 45%);
+    overflow:hidden;
+  }
+  #spotlight{
+    position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle 260px at var(--mx,50%) var(--my,30%), rgba(255,180,84,0.14), transparent 70%);
+    transition:background .05s linear;
+    z-index:1;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:50px;
+    align-items:center;position:relative;z-index:2;width:100%;
+  }
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+  .hero h1{
+    font-size:clamp(3.1rem,8.6vw,6.4rem);
+    margin:18px 0 6px;
+  }
+  .hero h1 .accent{color:var(--magenta);}
+  .hero-sub{
+    color:var(--muted);max-width:480px;margin-bottom:32px;font-size:1.08rem;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:46px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 26px;border-radius:999px;
+    font-weight:700;font-size:0.92rem;
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-primary{background:var(--whatsapp);color:#06210f;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.35);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--violet);color:var(--violet);}
+
+  .hero-stats{display:flex;gap:34px;flex-wrap:wrap;}
+  .stat b{
+    display:block;font-family:var(--display);font-size:1.9rem;color:var(--ink);
+  }
+  .stat span{font-family:var(--mono);font-size:0.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;}
+
+  /* live equalizer — signature visual */
+  .eq-panel{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:26px;
+    position:relative;
+    overflow:hidden;
+  }
+  .eq-head{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:0.72rem;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;
+  }
+  .eq-head .live{color:var(--magenta);display:flex;align-items:center;gap:6px;}
+  .eq-head .live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--magenta);animation:pulse 1.4s infinite;}
+  #eq{display:flex;align-items:flex-end;gap:5px;height:160px;}
+  #eq .bar{
+    flex:1;border-radius:4px 4px 0 0;
+    background:linear-gradient(180deg,var(--violet),var(--magenta));
+    height:10%;
+    transition:height .12s ease;
+  }
+  .eq-foot{
+    display:flex;justify-content:space-between;margin-top:16px;
+    font-family:var(--mono);font-size:0.72rem;color:var(--muted);
+  }
+
+  /* ===== SERVICIOS ===== */
+  .servicios{background:var(--bg-soft);}
+  .serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;}
+  @media(max-width:900px){.serv-grid{grid-template-columns:1fr;}}
+  .serv-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
+    padding:32px;transition:transform .3s, border-color .3s;
+  }
+  .serv-card:hover{transform:translateY(-6px);border-color:var(--violet);}
+  .serv-icon{width:52px;height:52px;margin-bottom:20px;}
+  .serv-card h3{font-size:1.3rem;margin-bottom:10px;}
+  .serv-card p{color:var(--muted);font-size:0.95rem;margin-bottom:18px;}
+  .serv-list{display:flex;flex-direction:column;gap:8px;}
+  .serv-list li{
+    font-family:var(--mono);font-size:0.78rem;color:var(--ink);
+    display:flex;gap:8px;align-items:center;
+  }
+  .serv-list li::before{content:'▸';color:var(--amber);}
+
+  /* ===== EVENTOS ===== */
+  .ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;}
+  @media(max-width:900px){.ev-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.ev-grid{grid-template-columns:1fr;}}
+  .ev-card{
+    border-radius:16px;padding:26px;min-height:150px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    border:1px solid var(--line);
+    background:var(--bg-card);
+    position:relative;overflow:hidden;
+  }
+  .ev-card::after{
+    content:'';position:absolute;inset:0;opacity:0;
+    background:var(--grad);transition:opacity .3s;
+  }
+  .ev-card:hover::after{opacity:0.18;}
+  .ev-card span{font-family:var(--mono);font-size:0.72rem;color:var(--muted);}
+  .ev-card h4{font-family:var(--display);font-size:1.25rem;margin-top:10px;position:relative;z-index:1;}
+
+  /* ===== TESTIMONIOS / CARRUSEL ===== */
+  .testi{background:var(--bg-soft);}
+  .carousel{
+    position:relative;max-width:720px;margin:50px auto 0;
+  }
+  .carousel-track-wrap{overflow:hidden;border-radius:18px;}
+  .carousel-track{display:flex;transition:transform .5s cubic-bezier(.65,0,.35,1);}
+  .slide{
+    flex:0 0 100%;padding:6px;
+  }
+  .testi-card{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
+    padding:40px;text-align:center;
+  }
+  .testi-quote{font-size:1.15rem;margin-bottom:24px;}
+  .testi-quote::before{content:'“';color:var(--magenta);font-family:var(--display);}
+  .testi-quote::after{content:'”';color:var(--magenta);font-family:var(--display);}
+  .testi-author{display:flex;align-items:center;justify-content:center;gap:12px;}
+  .avatar{
+    width:42px;height:42px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-size:1rem;color:#0b0b14;
+    background:linear-gradient(135deg,var(--amber),var(--magenta));
+  }
+  .testi-author b{display:block;font-size:0.92rem;}
+  .testi-author span{display:block;color:var(--muted);font-family:var(--mono);font-size:0.72rem;}
+  .carousel-controls{
+    display:flex;justify-content:center;gap:18px;align-items:center;margin-top:22px;
+  }
+  .carousel-controls button{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;transition:.2s;
+  }
+  .carousel-controls button:hover{border-color:var(--violet);color:var(--violet);}
+  .dots{display:flex;gap:8px;}
+  .dot-btn{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.2s;}
+  .dot-btn.active{background:var(--magenta);width:22px;border-radius:5px;}
+
+  /* ===== SOBRE / FICHA TÉCNICA ===== */
+  .sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  @media(max-width:900px){.sobre-grid{grid-template-columns:1fr;}}
+  .sobre p{color:var(--muted);margin-bottom:16px;font-size:1.02rem;}
+  .ficha{
+    background:var(--bg-card);border:1px solid var(--line);border-radius:18px;
+    padding:30px;font-family:var(--mono);
+  }
+  .ficha-row{
+    display:flex;justify-content:space-between;padding:14px 0;
+    border-bottom:1px solid var(--line);font-size:0.88rem;
+  }
+  .ficha-row:last-child{border-bottom:none;}
+  .ficha-row span:first-child{color:var(--muted);}
+  .ficha-row span:last-child{color:var(--ink);font-weight:600;}
+
+  /* ===== CONTACTO ===== */
+  .contacto{
+    background:radial-gradient(circle at 50% 0%, rgba(255,45,120,.18), transparent 60%), var(--bg);
+    text-align:center;
+  }
+  .contacto .section-lede{margin:0 auto 36px;}
+  .whats-cta{
+    display:inline-flex;align-items:center;gap:14px;
+    background:var(--whatsapp);color:#06210f;
+    padding:20px 38px;border-radius:999px;
+    font-family:var(--display);font-size:1.2rem;
+    box-shadow:0 0 0 0 rgba(37,211,102,.5);
+    animation:glow 2.4s infinite;
+  }
+  @keyframes glow{
+    0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.45);}
+    50%{box-shadow:0 0 0 14px rgba(37,211,102,0);}
+  }
+  .contact-alt{
+    margin-top:28px;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:0.85rem;color:var(--muted);
+  }
+  .contact-alt a:hover{color:var(--ink);}
+
+  footer{
+    border-top:1px solid var(--line);padding:32px 0;
+    text-align:center;color:var(--muted);font-family:var(--mono);font-size:0.78rem;
+  }
+
+  /* whatsapp floating button (mobile-friendly persistent CTA) */
+  .float-wa{
+    position:fixed;bottom:22px;right:22px;z-index:90;
+    width:58px;height:58px;border-radius:50%;
+    background:var(--whatsapp);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.4);
+    animation:glow 2.4s infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span>DJ LISANDRO</div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+      <li><a href="#sobre">Sobre Lisandro</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="nav-cta desktop-only" id="navWaBtn" target="_blank" rel="noopener">
+      Contactar servicio
+    </a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#servicios">Servicios</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#sobre">Sobre Lisandro</a>
+    <a href="#contacto">Contacto</a>
+    <a class="btn btn-primary" id="mobileWaBtn" target="_blank" rel="noopener" style="justify-content:center;">Contactar servicio</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div id="spotlight"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">DJ · Sonido · Iluminación</span>
+      <h1>LA FIESTA<br>SUENA <span class="accent">DISTINTO</span></h1>
+      <p class="hero-sub">Lisandro arma la pista, prende las luces y maneja el volumen exacto de tu evento — bodas, cumpleaños, fiestas privadas y shows. Equipo propio, sin sorpresas.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="heroWaBtn" target="_blank" rel="noopener">
+          ▸ Contactar servicio por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>+10</b><span>años en cabina</span></div>
+        <div class="stat"><b>+300</b><span>eventos sonorizados</span></div>
+        <div class="stat"><b>100%</b><span>equipo propio</span></div>
+      </div>
+    </div>
+
+    <div class="eq-panel">
+      <div class="eq-head">
+        <span>CABINA · ON AIR</span>
+        <span class="live">LIVE</span>
+      </div>
+      <div id="eq"></div>
+      <div class="eq-foot">
+        <span id="bpm">BPM 124</span>
+        <span>L &nbsp;◉&nbsp; R</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="servicios" id="servicios">
+  <div class="wrap reveal">
+    <span class="eyebrow">Lo que se monta en tu evento</span>
+    <h2 class="section-title">Tres cosas, bien hechas</h2>
+    <p class="section-lede">Nada de combos genéricos: cada evento se sonoriza e ilumina según el espacio y la cantidad de gente.</p>
+
+    <div class="serv-grid">
+      <div class="serv-card">
+        <svg class="serv-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#8b5cf6" stroke-width="2"/><circle cx="24" cy="24" r="6" fill="#ff2d78"/><line x1="24" y1="4" x2="24" y2="10" stroke="#ffb454" stroke-width="2"/></svg>
+        <h3>DJ &amp; Música</h3>
+        <p>Lectura de pista en vivo: abre con lo justo y sube la intensidad cuando el momento lo pide.</p>
+        <ul class="serv-list">
+          <li>Controladoras profesionales</li>
+          <li>Biblioteca de +40.000 temas</li>
+          <li>Pedido de canciones en el momento</li>
+        </ul>
+      </div>
+
+      <div class="serv-card">
+        <svg class="serv-icon" viewBox="0 0 48 48" fill="none"><rect x="14" y="6" width="20" height="36" rx="4" stroke="#8b5cf6" stroke-width="2"/><circle cx="24" cy="16" r="4" stroke="#ff2d78" stroke-width="2"/><circle cx="24" cy="30" r="6" stroke="#ffb454" stroke-width="2"/></svg>
+        <h3>Sonido</h3>
+        <p>Potencia calculada según el salón: se escucha parejo desde la barra hasta el fondo de la pista.</p>
+        <ul class="serv-list">
+          <li>Bafles activos + subwoofer</li>
+          <li>Microfonía para discursos</li>
+          <li>Mezclador con corrección en vivo</li>
+        </ul>
+      </div>
+
+      <div class="serv-card">
+        <svg class="serv-icon" viewBox="0 0 48 48" fill="none"><path d="M24 4v8" stroke="#ffb454" stroke-width="2"/><path d="M10 40l14-22 14 22" stroke="#8b5cf6" stroke-width="2"/><circle cx="24" cy="40" r="3" fill="#ff2d78"/></svg>
+        <h3>Iluminación</h3>
+        <p>Diseño lumínico que acompaña el ritmo, no que lo tapa. Frío para discurso, cálido para baile.</p>
+        <ul class="serv-list">
+          <li>Cabezas móviles + láser</li>
+          <li>Pista iluminada / pantallas LED</li>
+          <li>Efectos de humo bajo (opcional)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="eventos">
+  <div class="wrap reveal">
+    <span class="eyebrow">Para cada tipo de fecha</span>
+    <h2 class="section-title">Eventos que ya sonorizamos</h2>
+    <div class="ev-grid">
+      <div class="ev-card" style="--grad:linear-gradient(135deg,#8b5cf6,#ff2d78)"><span>15 a 600 invitados</span><h4>Casamientos</h4></div>
+      <div class="ev-card" style="--grad:linear-gradient(135deg,#ffb454,#ff2d78)"><span>Salón o jardín</span><h4>Cumpleaños de 15 / 18 / 50</h4></div>
+      <div class="ev-card" style="--grad:linear-gradient(135deg,#8b5cf6,#ffb454)"><span>Indoor / outdoor</span><h4>Fiestas privadas</h4></div>
+      <div class="ev-card" style="--grad:linear-gradient(135deg,#ff2d78,#8b5cf6)"><span>Con micrófono y atril</span><h4>Eventos corporativos</h4></div>
+      <div class="ev-card" style="--grad:linear-gradient(135deg,#ffb454,#8b5cf6)"><span>Pista + luces para bailar</span><h4>Aniversarios</h4></div>
+      <div class="ev-card" style="--grad:linear-gradient(135deg,#ff2d78,#ffb454)"><span>Equipo reforzado</span><h4>Shows en vivo</h4></div>
+    </div>
+  </div>
+</section>
+
+<section class="testi" id="testimonios">
+  <div class="wrap reveal">
+    <span class="eyebrow">Lo que dicen después del evento</span>
+    <h2 class="section-title">Reseñas reales</h2>
+
+    <div class="carousel">
+      <div class="carousel-track-wrap">
+        <div class="carousel-track" id="track">
+
+          <div class="slide">
+            <div class="testi-card">
+              <p class="testi-quote">Llegó puntual, armó todo solo y leyó perfecto cuándo subir y cuándo bajar la música. La pista no se vació ni un segundo.</p>
+              <div class="testi-author">
+                <div class="avatar">M</div>
+                <div><b>Marina R.</b><span>Casamiento · Marzo 2026</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="testi-card">
+              <p class="testi-quote">Las luces cambiaron por completo el salón. Pensábamos contratar sonido nomás y terminamos pidiendo también iluminación.</p>
+              <div class="testi-author">
+                <div class="avatar">F</div>
+                <div><b>Fede G.</b><span>Cumpleaños de 18 · Enero 2026</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="testi-card">
+              <p class="testi-quote">Para el evento de la empresa necesitábamos algo prolijo con micrófono para los discursos. Cero feedback, cero cortes.</p>
+              <div class="testi-author">
+                <div class="avatar">S</div>
+                <div><b>Sole P.</b><span>Evento corporativo · Noviembre 2025</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="testi-card">
+              <p class="testi-quote">Tomó nota de los temas que no podían faltar para mi vieja y los metió justo a tiempo. Se nota cuando alguien conoce el oficio.</p>
+              <div class="testi-author">
+                <div class="avatar">L</div>
+                <div><b>Lucas D.</b><span>Aniversario · Diciembre 2025</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button id="prevBtn" aria-label="Anterior">‹</button>
+        <div class="dots" id="dots"></div>
+        <button id="nextBtn" aria-label="Siguiente">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap sobre-grid reveal">
+    <div class="sobre">
+      <span class="eyebrow">Quién está en la cabina</span>
+      <h2 class="section-title">Lisandro</h2>
+      <p>Arrancó armando equipos para fiestas de amigos y hace más de diez años que no para. Cada evento lo piensa como un set: entrada, desarrollo y cierre, ajustando música y luz según cómo reacciona la gente, no según una lista fija.</p>
+      <p>Trabaja con equipo propio, llega con tiempo de sobra para probar sonido antes de que entre el primer invitado, y se queda hasta que se apaga la última luz.</p>
+    </div>
+    <div class="ficha">
+      <div class="ficha-row"><span>Experiencia</span><span>+10 años</span></div>
+      <div class="ficha-row"><span>Eventos realizados</span><span>+300</span></div>
+      <div class="ficha-row"><span>Zona de cobertura</span><span>San Nicolás y alrededores</span></div>
+      <div class="ficha-row"><span>Equipo de sonido</span><span>Propio, hasta 600 personas</span></div>
+      <div class="ficha-row"><span>Iluminación</span><span>Móvil, láser y LED</span></div>
+      <div class="ficha-row"><span>Armado previo</span><span>Incluido</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap reveal">
+    <span class="eyebrow">Reservá tu fecha</span>
+    <h2 class="section-title">Contanos de tu evento</h2>
+    <p class="section-lede">Contale a Lisandro la fecha, el lugar y cuántos van a ser. Te responde por WhatsApp con disponibilidad y presupuesto.</p>
+    <a class="whats-cta" id="mainWaBtn" target="_blank" rel="noopener">
+      ▸ Contactar servicio
+    </a>
+    <div class="contact-alt">
+      <a id="phoneText" href="#">📞 Ver número</a>
+      <a href="mailto:contacto@djlisandro.com">✉ contacto@djlisandro.com</a>
+    </div>
+  </div>
+</section>
+
+<a class="float-wa" id="floatWaBtn" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#06210f"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.27 4.91L2 22l5.25-1.38c1.4.74 2.99 1.18 4.79 1.18 5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.18c-1.58 0-3.04-.42-4.31-1.16l-.31-.18-3.12.82.83-3.04-.2-.32A7.99 7.99 0 0 1 4.04 12c0-4.42 3.58-8 8-8s8 3.58 8 8-3.58 8-8 8zm4.4-5.98c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-1.42-.7-2.34-1.26-3.28-2.86-.24-.42.24-.4.68-1.32.08-.16.04-.3-.04-.42-.08-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4-.14 0-.3 0-.46 0-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.66 2.54 4.02 3.46 2.36.92 2.36.62 2.78.58.42-.04 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<footer>
+  <div class="wrap">
+    DJ LISANDRO · Sonido e iluminación para eventos · San Nicolás de los Arroyos, AR<br>
+    © <span id="year"></span> — Hecho a pura cabina.
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ====== CONFIGURACIÓN DE WHATSAPP ======
+     Reemplazá el número por el real, con código de país, sin espacios ni "+".
+     Ejemplo Argentina: 549 + código de área SIN el 0 + número SIN el 15.
+  */
+  const WHATSAPP_NUMBER = "5493360000000"; // ⚠ EDITAR: poner el número real de Lisandro
+  const WHATSAPP_MESSAGE = "¡Hola Lisandro! Quiero consultar disponibilidad para mi evento 🎶";
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+
+  document.querySelectorAll('#navWaBtn,#mobileWaBtn,#heroWaBtn,#mainWaBtn,#floatWaBtn')
+    .forEach(el => el.setAttribute('href', waLink));
+
+  const phoneDisplay = "+54 9 336 000-0000"; // ⚠ EDITAR: mismo número en formato legible
+  const phoneEl = document.getElementById('phoneText');
+  phoneEl.textContent = `📞 ${phoneDisplay}`;
+  phoneEl.href = `tel:${WHATSAPP_NUMBER}`;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ====== MENÚ MÓVIL ====== */
+  const burger = document.getElementById('burgerBtn');
+  burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  document.querySelectorAll('.mobile-panel a').forEach(a =>
+    a.addEventListener('click', () => document.body.classList.remove('menu-open'))
+  );
+
+  /* ====== ECUALIZADOR EN VIVO ====== */
+  const eq = document.getElementById('eq');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const BAR_COUNT = 24;
+  const bars = [];
+  for (let i = 0; i < BAR_COUNT; i++) {
+    const b = document.createElement('div');
+    b.className = 'bar';
+    eq.appendChild(b);
+    bars.push(b);
+  }
+  function animateEQ(){
+    bars.forEach(b => { b.style.height = (Math.random() * 85 + 10) + '%'; });
+  }
+  if (!reduceMotion) {
+    animateEQ();
+    setInterval(animateEQ, 260);
+  } else {
+    bars.forEach(b => b.style.height = '40%');
+  }
+
+  // BPM aleatorio sutil, cosmético
+  const bpmEl = document.getElementById('bpm');
+  if (!reduceMotion) {
+    setInterval(() => {
+      bpmEl.textContent = 'BPM ' + (118 + Math.floor(Math.random() * 14));
+    }, 2200);
+  }
+
+  /* ====== SPOTLIGHT QUE SIGUE EL MOUSE (motivo de iluminación) ====== */
+  const hero = document.querySelector('.hero');
+  if (hero && window.matchMedia('(pointer: fine)').matches) {
+    hero.addEventListener('mousemove', (e) => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  }
+
+  /* ====== CARRUSEL DE TESTIMONIOS ====== */
+  const track = document.getElementById('track');
+  const slides = Array.from(track.children);
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+  let autoTimer;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot-btn' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Ir a testimonio ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function goTo(index){
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  function startAuto(){
+    if (reduceMotion) return;
+    autoTimer = setInterval(() => goTo(current + 1), 5500);
+  }
+  function stopAuto(){ clearInterval(autoTimer); }
+
+  document.getElementById('prevBtn').addEventListener('click', () => { goTo(current - 1); stopAuto(); startAuto(); });
+  document.getElementById('nextBtn').addEventListener('click', () => { goTo(current + 1); stopAuto(); startAuto(); });
+  document.querySelector('.carousel').addEventListener('mouseenter', stopAuto);
+  document.querySelector('.carousel').addEventListener('mouseleave', startAuto);
+
+  startAuto();
+
+  /* ====== REVEAL AL HACER SCROLL ====== */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('is-visible');
+          obs.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => obs.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+})();
+</script>
+</body>
+</html>
