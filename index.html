@@ -543,7 +543,7 @@
     </a>
     <div class="contact-alt">
       <a id="phoneText" href="#">📞 Ver número</a>
-      <a href="mailto:contacto@djlisandro.com">✉ contacto@djlisandro.com</a>
+      <a href="mailto:contacto@djlisandro.com">✉ lisandroponce865@gmail.com</a>
     </div>
   </div>
 </section>
@@ -565,14 +565,14 @@
      Reemplazá el número por el real, con código de país, sin espacios ni "+".
      Ejemplo Argentina: 549 + código de área SIN el 0 + número SIN el 15.
   */
-  const WHATSAPP_NUMBER = "5493360000000"; // ⚠ EDITAR: poner el número real de Lisandro
+  const WHATSAPP_NUMBER = "549336237689"; // ⚠ EDITAR: poner el número real de Lisandro
   const WHATSAPP_MESSAGE = "¡Hola Lisandro! Quiero consultar disponibilidad para mi evento 🎶";
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   document.querySelectorAll('#navWaBtn,#mobileWaBtn,#heroWaBtn,#mainWaBtn,#floatWaBtn')
     .forEach(el => el.setAttribute('href', waLink));
 
-  const phoneDisplay = "+54 9 336 000-0000"; // ⚠ EDITAR: mismo número en formato legible
+  const phoneDisplay = "+54 9 336 423-7689"; // ⚠ EDITAR: mismo número en formato legible
   const phoneEl = document.getElementById('phoneText');
   phoneEl.textContent = `📞 ${phoneDisplay}`;
   phoneEl.href = `tel:${WHATSAPP_NUMBER}`;
